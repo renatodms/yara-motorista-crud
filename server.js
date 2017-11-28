@@ -10,7 +10,7 @@ require('./router.js')(app);
 
 //mongodb
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/yaradb', {
+mongoose.connect('mongodb://db/yaradb', {
     useMongoClient: true,
 })
 .then(() => {
