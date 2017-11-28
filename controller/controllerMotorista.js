@@ -3,6 +3,8 @@ var Motorista = require('../model/motorista.js');
 
 //[GET]
 exports.getByEmail = (req, res) => {
+    console.log(req.params);
+
     Motorista.findOne({ email: req.params.email }, (err, data) => {
         if(err) res.status(500).send({ err: err, message: 'Erro interno do sistema.' });
         else {
@@ -10,6 +12,7 @@ exports.getByEmail = (req, res) => {
             if(!data) res.status(404).send({ message: 'Usuário não encontrado.' });
             else{
 
+                console.log({ motorista: data, message: 'Sucesso.' });
                 res.status(200).send({ motorista: data, message: 'Sucesso.' });
 
             }
@@ -20,6 +23,8 @@ exports.getByEmail = (req, res) => {
 
 //[POST]
 exports.add = (req, res) => {
+    console.log(req.body);
+
     new Motorista({
         nome: req.body.nome,
         email: req.body.email,
@@ -28,6 +33,7 @@ exports.add = (req, res) => {
         if(err) res.status(500).send({ err: err, message: 'Erro interno do sistema.' });
         else{
 
+            console.log({ message: 'Sucesso.' });
             res.status(200).send({ message: 'Sucesso.' });
 
         }
@@ -36,6 +42,8 @@ exports.add = (req, res) => {
 
 //[DELETE]
 exports.remove = (req, res) => {
+    console.log(req.body);
+
     Motorista.findOne({ email: req.body.email, senha: req.body.senha }, (err, data) => {
         if(err) res.status(500).send({ err: err, message: 'Erro interno do sistema.' });
         else {
@@ -47,6 +55,7 @@ exports.remove = (req, res) => {
                     if(err) res.status(500).send({ err: err, message: 'Erro interno do sistema.' });
                     else {
 
+                        console.log({ message: 'Sucesso.' });
                         res.status(200).send({ message: 'Sucesso.' });
 
                     }
