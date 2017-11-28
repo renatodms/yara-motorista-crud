@@ -2,6 +2,25 @@
 var Motorista = require('../model/motorista.js');
 
 //[GET]
+exports.getAll = (req, res) => {
+    console.log(req.params);
+
+    Motorista.find({}, (err, data) => {
+        if(err) res.status(500).send({ err: err, message: 'Erro interno do sistema.' });
+        else {
+
+            if(!data) res.status(404).send({ message: 'Usuário não encontrado.' });
+            else{
+
+                console.log({ motoristas: data, message: 'Sucesso.' });
+                res.status(200).send({ motoristas: data, message: 'Sucesso.' });
+
+            }
+
+        }
+    });
+}
+
 exports.getByEmail = (req, res) => {
     console.log(req.params);
 
